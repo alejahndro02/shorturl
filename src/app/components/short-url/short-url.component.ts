@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ShortUrlService } from 'src/app/services/short-url.service';
 
 @Component({
   selector: 'app-short-url',
@@ -10,7 +11,7 @@ export class ShortUrlComponent implements OnInit {
   urlCorta: string;
   urlProcesada: boolean
 
-  constructor() {
+  constructor(private _shortUrlService : ShortUrlService) {
     this.urlNombre = '';
     this.urlCorta = '';
     this.urlProcesada = false;
@@ -18,10 +19,11 @@ export class ShortUrlComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  
   procesarUrl(){
-    console.log(this.urlNombre);
-    this.urlNombre = '';
-    
+    this._shortUrlService.getUrlShort(this.urlNombre).subscribe(data =>{
+      console.log(data);
+    })
   }
 
 }
