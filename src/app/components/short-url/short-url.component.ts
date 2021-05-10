@@ -19,10 +19,9 @@ export class ShortUrlComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  
+
   procesarUrl(){
-    this._shortUrlService.getUrlShort(this.urlNombre).subscribe(data =>{
-      console.log(data);
+    this._shortUrlService.getUrlShort(this.urlNombre).subscribe(data =>{console.log(data);
     })
   }
 
