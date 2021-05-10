@@ -2,15 +2,15 @@
     <h1 class="display-5 text-center">Ingrese la URL a Cortar</h1>
     <div class="row mt-5 mb-4">
         <div class="col-lg-8">
-            <input type="text" class="form-control form-control-lg" placeholder="Ingrese la URL">
+            <input type="text" [(ngModel)]="urlNombre" class="form-control form-control-lg" placeholder="Ingrese la URL">
         </div>
         <div class="col-lg-4">
-            <button class="btn btn-primary btn-block btn-lg">ACEPTAR</button>
+            <button (click)="procesarUrl()" class="btn btn-primary btn-block btn-lg">ACEPTAR</button>
         </div>
     </div>
-    <div class="row">
+    <div *ngIf="urlProcesada" class="row">
         <div class="col-lg-8">
-            <input type="text" class="form-control form-control-lg" placeholder="URL procesada">
+            <input type="text" [(ngModel)]="urlCorta" class="form-control form-control-lg" placeholder="URL procesada">
         </div>
     </div>
 </div>
