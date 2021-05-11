@@ -13,5 +13,5 @@
             <input type="text" [(ngModel)]="urlCorta" class="form-control form-control-lg" placeholder="URL procesada">
         </div>
     </div>
-    <app-spinner></app-spinner>
+    <app-spinner *ngIf="loading"></app-spinner>
 </div>
