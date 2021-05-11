@@ -11,18 +11,30 @@ export class ShortUrlComponent implements OnInit {
   urlCorta: string;
   urlProcesada: boolean;
   loading: boolean;
+  mostrarError: boolean;
+  textError: String;
 
   constructor(private _shortUrlService : ShortUrlService) {
     this.urlNombre = '';
     this.urlCorta = '';
     this.urlProcesada = false;
     this.loading =false;
+    this.mostrarError=false;
+    this.textError=' ';
    }
 
   ngOnInit(): void {
   }
 
   procesarUrl(){
+    if(this.urlNombre === ''){
+      this.mostrarError= true;
+      this.textError ='Ingrese una URL';
+      setTimeout(() => {
+      this.mostrarError= false;
+      }, 4000);
+      return;
+    }
     this.urlProcesada = false;
     this.loading =true;
     setTimeout(() => {
@@ -38,4 +50,5 @@ export class ShortUrlComponent implements OnInit {
     })
       
   }
+
 }
