@@ -21,7 +21,10 @@ export class ShortUrlComponent implements OnInit {
   }
 
   procesarUrl(){
-    this._shortUrlService.getUrlShort(this.urlNombre).subscribe(data =>{console.log(data);
+    this.urlProcesada = false;
+    this._shortUrlService.getUrlShort(this.urlNombre).subscribe(data =>{
+      this.urlProcesada = true;
+      this.urlCorta = data.link
     })
   }
 
