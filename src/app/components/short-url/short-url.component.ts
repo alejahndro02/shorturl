@@ -9,12 +9,14 @@ import { ShortUrlService } from 'src/app/services/short-url.service';
 export class ShortUrlComponent implements OnInit {
   urlNombre : string;
   urlCorta: string;
-  urlProcesada: boolean
+  urlProcesada: boolean;
+  loading: boolean;
 
   constructor(private _shortUrlService : ShortUrlService) {
     this.urlNombre = '';
     this.urlCorta = '';
     this.urlProcesada = false;
+    this.loading =false;
    }
 
   ngOnInit(): void {
@@ -22,10 +24,18 @@ export class ShortUrlComponent implements OnInit {
 
   procesarUrl(){
     this.urlProcesada = false;
+    this.loading =true;
+    setTimeout(() => {
+      this.obtenerUrlShort();
+    }, 2000);
+  }
+    
+  obtenerUrlShort(){
     this._shortUrlService.getUrlShort(this.urlNombre).subscribe(data =>{
+      this.loading =false;
       this.urlProcesada = true;
       this.urlCorta = data.link
     })
+      
   }
-
 }
