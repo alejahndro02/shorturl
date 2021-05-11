@@ -1,3 +1,6 @@
+<div *ngIf="mostrarError" class="alert alert-dismissible alert-danger text-center">
+    <strong>{{textError | uppercase }}</strong> and try submitting again.
+</div>
 <div class="container mt-3">
     <h1 class="display-5 text-center">Ingrese la URL a Cortar</h1>
     <div class="row mt-5 mb-4">
