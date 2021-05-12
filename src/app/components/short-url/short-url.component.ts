@@ -28,11 +28,7 @@ export class ShortUrlComponent implements OnInit {
 
   procesarUrl(){
     if(this.urlNombre === ''){
-      this.mostrarError= true;
-      this.textError ='Ingrese una URL';
-      setTimeout(() => {
-      this.mostrarError= false;
-      }, 4000);
+      this.error('Ingresa una Url Valida');
       return;
     }
     this.urlProcesada = false;
@@ -41,14 +37,24 @@ export class ShortUrlComponent implements OnInit {
       this.obtenerUrlShort();
     }, 2000);
   }
-    
   obtenerUrlShort(){
     this._shortUrlService.getUrlShort(this.urlNombre).subscribe(data =>{
       this.loading =false;
       this.urlProcesada = true;
       this.urlCorta = data.link
+    },error => {
+      this.loading=false;
+      this.urlNombre = '';
+      if(error.error.description === 'The value provided is invalid.')  {
+        this.error('La URL ingresada es invalida')
+      }
     })
-      
   }
-
+  error( valor: string ){
+    this.mostrarError= true;
+    this.textError = valor;
+    setTimeout(() => {
+    this.mostrarError= false;
+    }, 4000);
+  }
 }
