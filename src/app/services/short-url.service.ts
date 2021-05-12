@@ -7,15 +7,13 @@ import { Observable } from 'rxjs';
 })
 export class ShortUrlService {
   url = 'https://api-ssl.bitly.com/v4/shorten';
-  token = 'efc953ec94f85548aca0f9eea033f0214949af26';
 
   constructor(private http: HttpClient) { }
 
   getUrlShort(urlNombre: string):Observable<any>{
-    const tokenHeader = new HttpHeaders({Authorization : 'Bearer ' + this.token});
     const body={
       long_url: urlNombre
     }
-    return this.http.post(this.url, body, {headers: tokenHeader})
+    return this.http.post(this.url, body)
   }
 }
